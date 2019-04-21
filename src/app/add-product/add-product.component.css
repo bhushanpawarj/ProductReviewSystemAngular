@@ -1,0 +1,25 @@
+.container{
+   width: 80%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container-fluid{
+   width: 90%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.example-card {
+  border-radius:0px;
+}
+.example-full-width {
+  width: 100%;
+}

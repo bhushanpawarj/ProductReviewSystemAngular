@@ -1,0 +1,53 @@
+<div class="container-fluid" style="margin-bottom:2%">
+  <mat-toolbar color="accent">
+    <mat-toolbar-row>
+      <span>List Of Products </span>
+      <span class="example-spacer"></span>
+      <button mat-fab color="dark" routerLink="/addproduct">
+        <mat-icon class="example-icon">add</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div class="container">
+  <div *ngIf="products?.length > 0; else noProduct">
+    <mat-grid-list cols="4" rowHeight="25rem" gutterSize="10px">
+      <mat-grid-tile colspan="1" *ngFor="let product of products">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <img mat-card-avatar src="{{ product.ProductURL }}" />
+            </div>
+            <mat-card-title>{{ product.ProductName }}</mat-card-title>
+            <mat-card-subtitle>{{ product.Description }}</mat-card-subtitle>
+          </mat-card-header>
+          <img
+            mat-card-image
+            src="{{ product.ProductURL }}"
+            alt="Photo of a
+          Shiba Inu"
+          />
+          <mat-card-content>
+            <p>
+              {{ product.DetailDescription }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+            <button
+              mat-button
+              [routerLink]="['/viewProduct', product.ProductId]"
+            >
+              View Product
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <ng-template #noProduct>
+    There are no products to show at this time
+  </ng-template>
+</div>

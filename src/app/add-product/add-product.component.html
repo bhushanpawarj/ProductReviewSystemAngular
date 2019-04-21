@@ -1,0 +1,90 @@
+<div>
+  <img [src]="profileUrl | async" />
+</div>
+<div class="container-fluid" style="margin-bottom:2%">
+  <mat-toolbar color="accent">
+    <mat-toolbar-row>
+      <button mat-fab color="dark" (click)="goBack()">
+        <mat-icon class="example-icon">
+          keyboard_arrow_left
+        </mat-icon>
+      </button>
+      <span>Add Details for New Product </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-card class="example-card">
+    <mat-card-content>
+      <!--Begin-Add new product form -->
+
+      <form
+        novalidate
+        [formGroup]="productForm"
+        #fform="ngForm"
+        (ngSubmit)="onSubmit($event)"
+      >
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            formControlName="ProductName"
+            placeholder="Product  Name"
+            type="text"
+            required
+          />
+          <mat-error *ngIf="formErrors.ProductName">{{
+            formErrors.ProductName
+          }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            formControlName="Description"
+            placeholder="Product Description"
+            type="text"
+            required
+          />
+          <mat-error *ngIf="formErrors.Description">{{
+            formErrors.Description
+          }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            formControlName="Price"
+            placeholder="Product Price "
+            type="text"
+            required
+          />
+
+          <mat-error *ngIf="formErrors.Price">{{ formErrors.Price }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            formControlName="DetailDescription"
+            placeholder="Product Detailed Description"
+            type="text"
+            required
+          />
+          <mat-error *ngIf="formErrors.DetailDescription">{{
+            formErrors.DetailDescription
+          }}</mat-error>
+        </mat-form-field>
+        <input
+          formControlName="ProductImage"
+          placeholder="Product Image"
+          type="file"
+          (change)="fileUpoad($event)"
+        />
+
+        <button type="submit" mat-raised-button color="primary">
+          Add Product
+        </button>
+      </form>
+      <!--End -Add new product form -->
+    </mat-card-content>
+  </mat-card>
+</div>

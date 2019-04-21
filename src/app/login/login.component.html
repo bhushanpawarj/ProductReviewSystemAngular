@@ -1,0 +1,69 @@
+<mat-tab-group mat-align-tabs="center" color="accent"  backgroundColor="accent" class="center-div">
+  <mat-tab label="Login"> 
+    <form [formGroup]="loginForm"   (ngSubmit)="login()">
+        <mat-card class="example-card">
+          <mat-card-content>
+          <div class="example-container">
+
+              <mat-form-field>
+                <input matInput placeholder="Enter your email" formControlName="email"  required>
+                <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput placeholder="Enter your password"  formControlName="password" [type]="hide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+              </mat-form-field>
+
+            </div>
+          </mat-card-content>
+          <mat-card-actions >
+            <button mat-raised-button color="primary">Login</button>
+          </mat-card-actions>
+          </mat-card>
+   
+    <mat-toolbar color="accent" class="social-login-buttons">
+      <a mat-raised-button  color="primary" (click)="googleLogin()"> Login With Google</a>
+      <a mat-raised-button  color="primary" (click)="fbLogin()"> Login With Facebook</a>
+      <a mat-raised-button   color="primary" (click)="gitLogin()">Login With GitHub</a>
+       <!--<a mat-raised-button  color="primary" (click)="twitterLogin()">Login With Twitter</a>--> <!--As we dont get email id in twitter api-->
+    </mat-toolbar>
+  </form>
+  </mat-tab>
+
+
+  <mat-tab label="Register"> 
+  <form [formGroup]="userForm"   (ngSubmit)="signup()">
+      <mat-card class="example-card">
+        <mat-card-content>
+        <div class="example-container">
+
+            <mat-form-field>
+              <input matInput placeholder="Enter your email" formControlName="email" required>
+              <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Enter your password"  formControlName="password" [type]="hide ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+            </mat-form-field>
+
+          </div>
+        </mat-card-content>
+        <mat-card-actions >
+          <button mat-raised-button color="primary">Sign Up</button>
+        </mat-card-actions>
+        </mat-card>
+
+      <mat-toolbar color="accent" class="social-login-buttons">
+        <a mat-raised-button  color="primary" (click)="googleLogin()"> Sign Up With Google</a>
+        <a mat-raised-button  color="primary" (click)="fbLogin()"> Sign Up  With Facebook</a>
+        <a mat-raised-button   color="primary" (click)="gitLogin()">Sign Up  With GitHub</a>
+        <!--<a mat-raised-button  color="primary" (click)="twitterLogin()">Login With Twitter</a>--> <!--As we dont get email id in twitter api-->
+      </mat-toolbar>
+    </form>
+  </mat-tab>
+
+</mat-tab-group>
