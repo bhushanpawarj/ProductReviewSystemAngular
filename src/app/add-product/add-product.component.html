@@ -1,6 +1,3 @@
-<div>
-  <img [src]="profileUrl | async" />
-</div>
 <div class="container-fluid" style="margin-bottom:2%">
   <mat-toolbar color="accent">
     <mat-toolbar-row>
@@ -79,10 +76,11 @@
           type="file"
           (change)="fileUpoad($event)"
         />
-
-        <button type="submit" mat-raised-button color="primary">
-          Add Product
-        </button>
+        <mat-form-field class="example-full-width">
+          <button type="submit" mat-raised-button color="primary">
+            Add Product
+          </button>
+        </mat-form-field>
       </form>
       <!--End -Add new product form -->
     </mat-card-content>
