@@ -1,27 +1,26 @@
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { MaterialModule} from './material/material.module';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { MaterialModule } from "./material/material.module";
+import { HeaderComponent } from "./header/header.component";
+import { LoginComponent } from "./login/login.component";
+import { HomeComponent } from "./home/home.component";
+import { AboutComponent } from "./about/about.component";
+import { ContactComponent } from "./contact/contact.component";
+import { ProductListComponent } from "./product-list/product-list.component";
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AddProductComponent } from './add-product/add-product.component';
+import { AddProductComponent } from "./add-product/add-product.component";
 
-import { ReactiveFormsModule } from '@angular/forms';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import { ReactiveFormsModule } from "@angular/forms";
+import { ProductDetailsComponent } from "./product-details/product-details.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDJxzSvzWHJCywVbHWnxl20JcSa2iiM_qw",
@@ -31,7 +30,6 @@ export const firebaseConfig = {
   storageBucket: "angularfirebaseauthproject.appspot.com",
   messagingSenderId: "142997162845"
 };
-
 
 @NgModule({
   declarations: [
@@ -53,7 +51,8 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

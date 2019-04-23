@@ -1,60 +1,134 @@
-<div class="container-fluid" style="margin-bottom:2%">
-  <mat-toolbar color="accent">
-    <mat-toolbar-row>
-      <span>List Of Products </span>
-    </mat-toolbar-row>
-  </mat-toolbar>
+<div
+  class="container"
+  fxLayout="row"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0"
+>
+  <div fxFlex="40">
+    <div fxFlex *ngIf="selectedProduct">
+      <h3>Product Details</h3>
+      <hr />
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <h3>{{ selectedProduct.ProductName | uppercase }}</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ selectedProduct.ProductURL }}"
+          alt="{{ selectedProduct.ProductName }}"
+        />
+        <mat-card-content>
+          <p>{{ selectedProduct.DetailDescription }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>BACK</button>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div fxFlex="40" *ngIf="selectedProductComments">
+    <h3>Reviews</h3>
+    <hr />
+    <mat-list>
+      <mat-list-item *ngFor="let comment of selectedProductComments">
+        <p mat-line>
+          <span>{{ comment.Comment }}</span>
+          <button
+            mat-raised-button
+            style="float:right"
+            *ngIf="sameUser(comment.UserId)"
+            (click)="deleteComment(comment.$key)"
+          >
+            Delete
+          </button>
+          <button
+            mat-raised-button
+            style="float:right; margin-right:1%"
+            *ngIf="sameUser(comment.UserId)"
+          >
+            Edit
+          </button>
+        </p>
+        <p mat-line>
+          <span>{{ comment.Rating }} Stars</span>
+        </p>
+        <p mat-line>
+          <span>-- {{ comment.Author }} </span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+    <mat-list *ngIf="commentForm.valid">
+      <mat-list-item>
+        <p matLine>{{ commentForm.value.Comment }}</p>
+        <p matLine>{{ commentForm.value.Rating }} Stars</p>
+        <p matLine>-- {{ commentForm.value.Author }}</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
 </div>
 
-<div class="card">
-  <div class="container-fliud">
-    <div class="wrapper row">
-      <div class="preview col-md-6">
-        <div class="preview-pic tab-content">
-          <div class="tab-pane active">
-            <img
-              class="img-responsive"
-              src="{{ selectedProduct.ProductURL }}"
-            />
-          </div>
-        </div>
-        <ul class="preview-thumbnail nav nav-tabs">
-          <li *ngFor="let img of product?.images">
-            <a data-target="#pic-2" data-toggle="tab">
-              <img src="{{ selectedProduct.ProductURL }}" />
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="details col-md-6">
-        <h3 class="product-title">
-          {{ selectedProduct.ProductName }}
-        </h3>
-        <div class="rating">
-          <div class="stars">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-          </div>
-          <!-- <span class="review-no">41 reviews</span> -->
-        </div>
-        <p class="product-description">
-          {{ selectedProduct.Description }}
+<div
+  style="margin-top:3%"
+  class="container"
+  fxLayout="row"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around"
+  fxLayoutGap.xs="0"
+>
+  <div fxFlex="90">
+    <div class="conatiner" style="background-color:#424242 ;padding: 3%">
+      <h3 style="color:white">Add Review</h3>
+      <hr />
+      <form
+        novalidate
+        [formGroup]="commentForm"
+        #cform="ngForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <span style="color:white">Rating : </span>
+        <mat-slider
+          formControlName="Rating"
+          min="1"
+          max="5"
+          step="1"
+          value="5"
+          tickInterval="1"
+          thumbLabel="true"
+        ></mat-slider>
+        <p>
+          <mat-form-field class="example-full-width">
+            <textarea
+              matInput
+              formControlName="Comment"
+              placeholder="Your Comment"
+              rows="12"
+            >
+            </textarea>
+            <mat-error *ngIf="formErrors.Comment">{{
+              formErrors.Comment
+            }}</mat-error>
+          </mat-form-field>
         </p>
-        <h4 class="price">
-          <span>
-            {{ selectedProduct.Price | currency: "USD":true }}
-          </span>
-        </h4>
 
-        <div class="action">
-          <button class="add-to-cart btn btn-default" type="button">
-            add to cart
-          </button>
-        </div>
-      </div>
+        <button
+          [disabled]="!commentForm.valid"
+          type="submit"
+          mat-raised-button
+          color="primary"
+          class="background-primary text-floral-white"
+        >
+          Submit
+        </button>
+      </form>
     </div>
   </div>
 </div>

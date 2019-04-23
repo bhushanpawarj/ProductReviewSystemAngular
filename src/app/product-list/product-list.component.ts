@@ -1,6 +1,6 @@
-import { Product } from './../Models/product';
-import { Component, OnInit } from '@angular/core';
-import 'rxjs/add/operator/map';
+import { Product } from "./../Models/product";
+import { Component, OnInit } from "@angular/core";
+import "rxjs/add/operator/map";
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -14,32 +14,32 @@ import { Observable } from "rxjs";
   styleUrls: ["./product-list.component.css"]
 })
 export class ProductListComponent implements OnInit {
-
   private itemsCollection: AngularFirestoreCollection<Product>;
   //items: Observable<Product[]>;
-  products:Product[]
-
+  products: Product[];
 
   constructor(private afs: AngularFirestore) {
-  /*  this.afs.collection('Products').valueChanges().subscribe((products)=>{
+    /*  this.afs.collection('Products').valueChanges().subscribe((products)=>{
       this.products=products;
       
     })*/
-    this.itemsCollection = this.afs.collection<Product>('Products');
+    this.itemsCollection = this.afs.collection<Product>("Products");
     this.itemsCollection
-      .snapshotChanges().map(actions => {
+      .snapshotChanges()
+      .map(actions => {
         return actions.map(action => ({
           ProductId: action.payload.doc.id,
           ...action.payload.doc.data()
         }));
-      }).subscribe(products=>{
-        this.products=products;
       })
-     
+      .subscribe(products => {
+        this.products = products;
+      });
   }
-  getProducts(){
+  getProducts() {
     return this.products;
   }
-  
+  getAverageRating() {}
+
   ngOnInit() {}
 }

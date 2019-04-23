@@ -107,7 +107,7 @@ export class AddProductComponent implements OnInit {
   }
   onSubmit() {
     this.product = this.productForm.value;
-    //console.log(this.product);
+    console.log(this.product);
     this.uploadImage();
     console.log("Upload image function completed");
     this.addProduct(this.product);

@@ -11,6 +11,9 @@ import { MatInputModule } from "@angular/material/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { MatGridListModule } from "@angular/material/grid-list";
+import { MatListModule } from "@angular/material/list";
+import { MatSliderModule } from "@angular/material/slider";
+import { MatDividerModule } from "@angular/material/divider";
 
 @NgModule({
   imports: [CommonModule],
@@ -27,7 +30,10 @@ import { MatGridListModule } from "@angular/material/grid-list";
     ReactiveFormsModule,
     MatIconModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatListModule,
+    MatSliderModule,
+    MatDividerModule
   ],
 
   declarations: []

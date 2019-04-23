@@ -2,6 +2,7 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 body {
   margin: 0px;
+  color: black;
 }
 .container {
   width: 80%;

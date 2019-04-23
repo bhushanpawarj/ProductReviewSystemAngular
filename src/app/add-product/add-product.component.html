@@ -18,7 +18,7 @@
         novalidate
         [formGroup]="productForm"
         #fform="ngForm"
-        (ngSubmit)="onSubmit($event)"
+        (ngSubmit)="onSubmit()"
       >
         <mat-form-field class="example-full-width">
           <input
@@ -71,16 +71,14 @@
           }}</mat-error>
         </mat-form-field>
         <input
-          formControlName="ProductImage"
           placeholder="Product Image"
           type="file"
           (change)="fileUpoad($event)"
         />
-        <mat-form-field class="example-full-width">
-          <button type="submit" mat-raised-button color="primary">
-            Add Product
-          </button>
-        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary">
+          Add Product
+        </button>
       </form>
       <!--End -Add new product form -->
     </mat-card-content>

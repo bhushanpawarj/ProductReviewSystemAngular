@@ -12,7 +12,7 @@
 
 <div class="container">
   <div *ngIf="products?.length > 0; else noProduct">
-    <mat-grid-list cols="4" rowHeight="25rem" gutterSize="10px">
+    <mat-grid-list cols="3" rowHeight="100em" gutterSize="10px">
       <mat-grid-tile colspan="1" *ngFor="let product of products">
         <mat-card class="example-card">
           <mat-card-header>
@@ -29,15 +29,12 @@
           Shiba Inu"
           />
           <mat-card-content>
-            <p>
-              {{ product.DetailDescription }}
-            </p>
+            <p>{{ product.Description }} Or Average Rating can go here</p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
             <button
-              mat-button
+              mat-raised-button
+              color="primary"
               [routerLink]="['/viewProduct', product.ProductId]"
             >
               View Product
